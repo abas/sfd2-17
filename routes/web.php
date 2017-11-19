@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('index');
 });
@@ -51,3 +52,7 @@ Route::get('/cariaku','ParticipantController@search_username')->name('cariaku');
 Route::post('/cariaku','ParticipantController@show_stat_cari')->name('cariakupost');
 
 Route::get('/statusku/{generate_code}','ParticipantController@show_stat')->name('show_stat');
+
+Route::match(['get', 'post'], 'register', function(){
+    return redirect('/');
+});

@@ -52,11 +52,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                @foreach($barang as $data)
                                     <tr>
-                                        <td>390</td>
-                                        <td>Kaos TeaLinuxOS</td>
-                                        <td>3</td>
+                                        <td>{{$data->point}}</td>
+                                        <td>{{$data->nama_barang}}</td>
+                                        <td>{{$data->total}}</td>
                                     </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>

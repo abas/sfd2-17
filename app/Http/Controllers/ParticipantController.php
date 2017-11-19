@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Participant;
+use App\Barang;
 use Illuminate\Http\Request;
 
 class ParticipantController extends Controller
@@ -77,12 +78,13 @@ class ParticipantController extends Controller
 
     public function show_stat($gen_code)
     {
+        $barang = Barang::All();
         $gen_codeDec = Participant::decryptIt($gen_code);
         // dd($gen_codeDec);
         $isGenCode_Ada = Participant::where('generate_code',$gen_codeDec)->exists();
         if($isGenCode_Ada){
             $participant = Participant::where('generate_code','=',$gen_codeDec)->get()->first();
-            return view('participant_stat',compact('participant'));
+            return view('participant_stat',compact('participant','barang'));
         }return redirect(route('cariaku'))->with('message','username not found');
     }
 

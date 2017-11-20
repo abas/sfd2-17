@@ -1,4 +1,19 @@
-@extends('admin.layouts.app') @section('content')
+@extends('admin.layouts.app') 
+use App\Barang;
+@if(session('error'))
+<script>
+  alert('invalid code!')
+</script>
+@elseif(session('point'))
+<script>
+  alert('point tidak cukup!')
+</script>
+@elseif(session('message'))
+<script>
+  alert('success')
+</script>
+@endif
+@section('content')
 <!-- Main content -->
 <section class="content">
   <!-- Info boxes -->
@@ -75,18 +90,26 @@
           <h4 class="modal-title">Tambah / Kurang Merchandise</h4>
         </div>
         <div class="modal-body">
-          <form method="post" action="{{route('update',$mod->id)}}">
-          {{ csrf_field() }}
-            <input type="text" name="tambahi" value="true" style="display:none">
-            <button type="submit" class="btn btn-success">Add</button>
-            <span> // untuk <b>menambah</b> Merchandise</span>
-          </form>
-          <form method="post" action="{{route('update',$mod->id)}}">
-            {{ csrf_field() }}
-            <input type="text" name="kurangi" value="true" style="display:none">
-            <button type="submit" class="btn btn-danger">Sub</button>
-            <span> // untuk <b>mengurangi</b> Merchandise</span>
-          </form>
+        <form action="{{route('redeem')}}" method="post">
+        {{ csrf_field() }}
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-code"></i></span>
+          <select class="form-control" name="generate_code">
+            @foreach($participant as $data)
+            <option value="{{$data->generate_code}}">{{$data->generate_code}}</option>
+            @endforeach
+          </select>
+          <!-- <input name="generate_code" class="form-control" placeholder="Generated Code" type="text"> -->
+        </div>
+        <br>
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-rub"></i></span>
+          <input name="redeem" class="form-control" placeholder="Redeem" type="number">
+          <input name="id" type="text" value="{{$mod->id}}" style="display:none;">
+        </div><br><br>
+        <button type="reset" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-primary pull-right">Submit</button>
+      </form>
         </div>
       </div>
     </div>

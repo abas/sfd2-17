@@ -14,7 +14,11 @@ class Participant extends Model
     
     public static function generated_code($username,$password,$email)
     {
-        return (string)rand((date("s")),rand(100,200)).substr($email,0,1).substr($username,-2).substr($password,-1);
+        $gen_code = (string)rand((date("s")),rand(100,200)).substr($email,0,1).substr($username,-2).substr($password,-1);
+        while(Participant::where('generate_code',$gen_code)->exists()){
+            $gen_code = (string)rand((date("s")),rand(100,200)).substr($email,0,1).substr($username,-2).substr($password,-1);
+        }
+        return $gen_code;
     }
 
 

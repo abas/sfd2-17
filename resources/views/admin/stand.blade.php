@@ -84,7 +84,12 @@
             {{ csrf_field() }}
             <div class="input-group">
               <span class="input-group-addon"><i class="fa fa-code"></i></span>
-              <input name="generate_code" class="form-control" placeholder="Generated Code" type="text">
+              <select class="form-control" name="generate_code">
+                @foreach($participant as $data)
+                <option value="{{$data->generate_code}}">{{$data->generate_code}}</option>
+                @endforeach
+              </select>
+              <!-- <input name="generate_code" class="form-control" placeholder="Generated Code" type="text"> -->
             </div>
             <br>
             <div class="input-group">
@@ -95,6 +100,9 @@
                 <option value="10">10 point</option>
                 <option value="20">20 point</option>
                 <option value="30">30 point</option>
+                @if($mod->name == 'TealinuxOS')
+                <option value="50">50 point</option>
+                @endif
               </select>
             </div>
             <br>

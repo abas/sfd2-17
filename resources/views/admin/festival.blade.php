@@ -67,6 +67,7 @@
                                 <th>Point</th>
                                 <th>Email</th>
                                 <th>Phone</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -77,7 +78,7 @@
                                 <td>{{$get->point}}</td>
                                 <td>{{$get->email}}</td>
                                 <td>{{$get->phone}}</td>
-                                <!-- <td>
+                                <td>
                                     <center>
                                         <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">
                                             <i class="fa fa-edit"></i> Edit
@@ -92,7 +93,8 @@
                                                         <h4 class="modal-title">Default Modal</h4>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <p>One fine body&hellip;</p>
+                                                        
+
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
@@ -101,7 +103,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger">
+                                        <!-- <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger">
                                             <i class="fa fa-trash"></i> Delete
                                         </button>
                                         <div class="modal modal-danger fade" id="modal-danger">
@@ -122,9 +124,9 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
                                     </center>
-                                </td> -->
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>

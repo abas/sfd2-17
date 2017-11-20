@@ -15,7 +15,8 @@ class StandController extends Controller
     public function index()
     {
         $stand = Stand::All();
-        return view('admin.stand',compact('stand'));
+        $participant = Participant::All();
+        return view('admin.stand',compact('stand','participant'));
     }
 
     /**

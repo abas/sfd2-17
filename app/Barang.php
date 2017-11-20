@@ -23,4 +23,10 @@ class Barang extends Model
         $barang->total = $barang->total + 1;
         $barang->update();
     }
+
+    public static function isEmpty($id)
+    {
+        $barang = Barang::find($id);
+        return $barang->total == 0;
+    }
 }

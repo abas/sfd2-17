@@ -28,22 +28,22 @@ Route::group(['prefix'=>'dashboard','middleware'=>'auth'],function(){
         Route::get('/',['as'=>'participant','uses'=>'ParticipantController@index']);
         Route::post('/',['as'=>'participant','uses'=>'ParticipantController@store']);
     });
-
+    
     Route::group(['prefix'=>'festival'],function(){
         Route::get('/',['as'=>'festival','uses'=>'ParticipantController@addList']);
         Route::post('/',['as'=>'festival','uses'=>'ParticipantController@addList']);
     });
-
+    
     Route::group(['prefix'=>'stand'],function(){
         Route::get('/',['as'=>'stand','uses'=>'StandController@index']);
         Route::post('/',['as'=>'stand','uses'=>'StandController@store']);
         Route::post('/{id}',['as'=>'addpoint','uses'=>'StandController@addPoint']);
     });
-
+    
     Route::group(['prefix'=>'merchandise'],function(){
         Route::get('/',['as'=>'merchandise','uses'=>'BarangController@index']);
         Route::post('/',['as'=>'addbarang','uses'=>'BarangController@store']);
-        Route::post('/{id}',['as'=>'update','uses'=>'BarangController@update']);
+        Route::post('/redeem',['as'=>'redeem','uses'=>'ParticipantController@update']);
     });
     
 });

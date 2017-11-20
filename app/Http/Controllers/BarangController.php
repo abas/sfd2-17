@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Barang;
+use App\Participant;
 use Illuminate\Http\Request;
 
 class BarangController extends Controller
@@ -14,7 +15,18 @@ class BarangController extends Controller
     public function index()
     {
         $barang = Barang::All();
-        return view('admin.merchandise',compact('barang'));
+        $participant = Participant::All();
+        return view('admin.merchandise',compact('barang','participant'));
+    }
+
+    /**
+     * send Code @param none
+     * 
+     */
+
+    public function sendcode()
+    {
+        
     }
 
     /**
@@ -75,14 +87,22 @@ class BarangController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if(!Participant::where('generate_code',$request->generate_code)->exists()){
+            return redirect(route('merchandise'))->with('error',' ');
+        }
+
         if($request->tambahi == 'true'){
             $barang = Barang::find($id);
             $barang->total = $barang->total + 1;
             $barang->update();
         }else if($request->kurangi == 'true'){
+            $gencode = $request->generate_code;
+            
             $barang = Barang::find($id);
             $barang->total = $barang->total - 1;
             $barang->update();
+            
+            return redirect(route('min',compact('gencode')));
         }else{
             return redirect(abort(404));
         }return redirect(route('merchandise'));

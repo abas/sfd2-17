@@ -94,12 +94,7 @@ use App\Barang;
         {{ csrf_field() }}
         <div class="input-group">
           <span class="input-group-addon"><i class="fa fa-code"></i></span>
-          <select class="form-control" name="generate_code">
-            @foreach($participant as $data)
-            <option value="{{$data->generate_code}}">{{$data->generate_code}}</option>
-            @endforeach
-          </select>
-          <!-- <input name="generate_code" class="form-control" placeholder="Generated Code" type="text"> -->
+          <input name="generate_code" class="form-control" placeholder="Generated Code" type="text">
         </div>
         <br>
         <div class="input-group">
